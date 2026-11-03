@@ -1,0 +1,155 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *top = NULL;
+
+// Check whether stack is empty
+int isEmpty() {
+    return top == NULL;
+}
+
+// Count elements
+int count_ele() {
+    int count = 0;
+    struct node *temp = top;
+
+    while (temp != NULL) {
+        count++;
+        temp = temp->next;
+    }
+
+    return count;
+}
+
+// Push element
+void push(int value) {
+    struct node *newnode;
+
+    newnode = (struct node*)malloc(sizeof(struct node));
+
+    if (newnode == NULL) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+
+    newnode->data = value;
+    newnode->next = top;
+    top = newnode;
+}
+
+// Pop element
+void pop() {
+    struct node *temp;
+
+    if (isEmpty()) {
+        printf("Stack is empty\n");
+        return;
+    }
+
+    temp = top;
+    printf("Deleted element: %d\n", top->data);
+    top = top->next;
+
+    free(temp);
+}
+
+// Reverse stack
+void reverse() {
+    struct node *prev = NULL;
+    struct node *current = top;
+    struct node *nextnode;
+
+    while (current != NULL) {
+        nextnode = current->next;
+        current->next = prev;
+        prev = current;
+        current = nextnode;
+    }
+
+    top = prev;
+}
+
+// Display stack
+void display() {
+    struct node *temp = top;
+
+    if (isEmpty()) {
+        printf("Stack is empty\n");
+        return;
+    }
+
+    printf("Stack elements: ");
+
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+
+    printf("\n");
+}
+
+int main() {
+    int choice, value;
+
+    do {
+        printf("\n1. Push");
+        printf("\n2. Pop");
+        printf("\n3. Is Empty");
+        printf("\n4. Count Elements");
+        printf("\n5. Reverse");
+        printf("\n6. Display");
+        printf("\n7. Exit");
+
+        printf("\nEnter choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+
+            case 2:
+                pop();
+                break;
+
+            case 3:
+                if (isEmpty())
+                    printf("Stack is empty\n");
+                else
+                    printf("Stack is not empty\n");
+                break;
+
+            case 4:
+                printf("Total elements: %d\n", count_ele());
+                break;
+
+            case 5:
+                reverse();
+                printf("Stack reversed\n");
+                break;
+
+            case 6:
+                display();
+                break;
+
+            case 7:
+                printf("Exiting...\n");
+                break;
+
+            default:
+                printf("Invalid choice\n");
+        }
+
+    } while (choice != 7);
+
+    return 0;
+}
+
