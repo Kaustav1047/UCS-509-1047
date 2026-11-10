@@ -10,7 +10,7 @@ struct node {
 struct node *front = NULL;
 struct node *rear = NULL;
 
-// Enqueue operation
+
 void enqueue() {
     struct node *newnode;
 
@@ -36,7 +36,7 @@ void enqueue() {
     printf("Element inserted\n");
 }
 
-// Dequeue operation
+
 void dequeue() {
     struct node *temp;
 
@@ -58,7 +58,7 @@ void dequeue() {
     free(temp);
 }
 
-// Display operation
+
 void display() {
     struct node *temp = front;
 
@@ -77,7 +77,7 @@ void display() {
     printf("\n");
 }
 
-// Main function
+
 int main() {
     int choice;
 
