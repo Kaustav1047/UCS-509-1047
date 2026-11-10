@@ -9,12 +9,12 @@ struct node {
 
 struct node *top = NULL;
 
-// Check whether stack is empty
+
 int isEmpty() {
     return top == NULL;
 }
 
-// Count elements
+
 int count_ele() {
     int count = 0;
     struct node *temp = top;
@@ -27,7 +27,7 @@ int count_ele() {
     return count;
 }
 
-// Push element
+
 void push(int value) {
     struct node *newnode;
 
@@ -43,7 +43,7 @@ void push(int value) {
     top = newnode;
 }
 
-// Pop element
+
 void pop() {
     struct node *temp;
 
@@ -59,7 +59,7 @@ void pop() {
     free(temp);
 }
 
-// Reverse stack
+
 void reverse() {
     struct node *prev = NULL;
     struct node *current = top;
@@ -75,7 +75,7 @@ void reverse() {
     top = prev;
 }
 
-// Display stack
+
 void display() {
     struct node *temp = top;
 
